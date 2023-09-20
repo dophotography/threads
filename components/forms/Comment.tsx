@@ -32,14 +32,14 @@ function Comment({ threadId, currentUserImg, currentUserId }: Props) {
   const form = useForm<z.infer<typeof CommentValidation>>({
     resolver: zodResolver(CommentValidation),
     defaultValues: {
-      thread: "",
+      comment: "",
     },
   });
 
   const onSubmit = async (values: z.infer<typeof CommentValidation>) => {
     await addCommentToThread(
       threadId,
-      values.thread,
+      values.comment,
       JSON.parse(currentUserId),
       pathname
     );
@@ -52,7 +52,7 @@ function Comment({ threadId, currentUserImg, currentUserId }: Props) {
       <form className="comment-form" onSubmit={form.handleSubmit(onSubmit)}>
         <FormField
           control={form.control}
-          name="thread"
+          name="comment"
           render={({ field }) => (
             <FormItem className="flex w-full items-center gap-3">
               <FormLabel>
