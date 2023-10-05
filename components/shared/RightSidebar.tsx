@@ -9,7 +9,7 @@ async function RightSidebar() {
   const user = await currentUser();
   if (!user) return null;
 
-  const suggestedProfiles = await fetchUsers({
+  const suggestedCreators = await fetchUsers({
     userId: user.id,
     pageSize: 4,
   });
@@ -46,11 +46,13 @@ async function RightSidebar() {
       </div>
 
       <div className="flex flex-1 flex-col justify-start">
-        <h3 className="text-heading4-medium text-light-1">Suggested Profiles</h3>
+        <h3 className="text-heading4-medium text-light-1">
+          Suggested Creators
+        </h3>
         <div className="mt-7 flex w-[350px] flex-col gap-10">
-          {suggestedProfiles.users.length > 0 ? (
+          {suggestedCreators.users.length > 0 ? (
             <>
-              {suggestedProfiles.users.map((person) => (
+              {suggestedCreators.users.map((person) => (
                 <UserCard
                   key={person.id}
                   id={person.id}
@@ -62,7 +64,7 @@ async function RightSidebar() {
               ))}
             </>
           ) : (
-            <p className="!text-base-regular text-light-3">No profiles yet</p>
+            <p className="!text-base-regular text-light-3">No creators yet</p>
           )}
         </div>
       </div>
